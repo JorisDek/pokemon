@@ -13,7 +13,7 @@ class CreatePokemonTable extends Migration
     public function up()
     {
         Schema::create('pokemons', function(Blueprint $table){
-            $table->integer('nr');
+            $table->integer('id');
             $table->string('name');
             $table->timestamps();
         });

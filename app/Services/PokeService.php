@@ -31,7 +31,7 @@ class PokeService {
             foreach ($pokedex->pokemon_entries as $singlePokemon) {
                 $pokemon = new Pokemon;
                 $pokemon->name = $singlePokemon->pokemon_species->name;
-                $pokemon->nr = $singlePokemon->entry_number;
+                $pokemon->id = $singlePokemon->entry_number;
                 $pokemon->save();
             }
             // foreach ($pokemonlist as $singlePokemon) {

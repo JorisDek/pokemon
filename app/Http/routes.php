@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.index');
 });
 
 /*
@@ -26,14 +26,20 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['prefix' => 'api', 'middleware' => ['web']], function () {
+    Route::post('createPokemonUser', 'PokemonController@storeUserPokemon');
+});
+
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+
+    Route::resource('pokemon', 'PokemonController');
 });
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
-
-    Route::resource('pokemon', 'PokemonController');
 });
